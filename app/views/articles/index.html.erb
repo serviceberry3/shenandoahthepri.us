@@ -1,1 +1,15 @@
-<h1>Hello, Rails!</h1>
+#ERB is a templating system that evaluates Ruby code embedded in a document
+
+<h1>Articles</h1>
+
+
+<ul>
+    #this <%%> tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program)
+  <% @articles.each do |article| %>
+    <li>
+        #this <%= %> tag means eval the enclosed ruby code and output the val it returns
+        #so output val returned by article.title for each article
+      <%= article.title %>
+    </li>
+  <% end %>
+</ul>
