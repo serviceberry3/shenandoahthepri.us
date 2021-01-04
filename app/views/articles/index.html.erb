@@ -6,10 +6,15 @@
 <ul>
     <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
   <% @articles.each do |article| %>
+    
     <li>
-        <%# this <%= %> tag means eval the enclosed ruby code and output the val it returns%>
+
+      <a href="/articles/<%= article.id %>">
+      <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
         <%#so output val returned by article.title for each article%>
-      <%= article.title %>
+        <%= article.title %>
+      </a>
+      
     </li>
   <% end %>
 </ul>
