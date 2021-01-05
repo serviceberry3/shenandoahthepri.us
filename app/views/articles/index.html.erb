@@ -8,12 +8,27 @@
   <% @articles.each do |article| %>
     
     <li>
-
-      <a href="/articles/<%= article.id %>">
       <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
-        <%#so output val returned by article.title for each article%>
+
+      <% if false %>
+      <%#This is one option%>
+      <a href="/articles/<%= article.id %>">
+        <%#output val returned by article.title for each article%>
         <%= article.title %>
       </a>
+      
+      
+      <%# this is a second option, using _ helpers created by the resources method in routes%>
+      <a href="<%= article_path(article) %>">
+        <%#output val returned by article.title for each article%>
+        <%= article.title %>
+      </a>
+      <% end %>
+
+      <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
+      If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
+      Like if we pass article, link_to will call article_path%>
+      <%= link_to article.title, article %>
       
     </li>
   <% end %>
