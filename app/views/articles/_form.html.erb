@@ -1,0 +1,55 @@
+<%#NOTE: form builder automatically configures form to make appropriate kind of rqst, based on whether model object has been previously saved.%>
+<%#this is a shared view called a partial (like a template)%>
+<%#partials are shared code, so shouldn't depend on specific instance vars set by controller action. Instead, pass art to partial as local var.%>
+
+
+<%#We'll use feature of Rails called form builder to create our form. Using form builder, we can write minimal amt of code to output a form
+that's fully configured and follows Rails conventions.%>
+
+
+<%#form_with helper method instantiates form builder. In form_with block we call methods like label and text_field on form builder to output 
+appropriate form elements.%>
+
+<%#using the article model as reference, do a form like this:%>
+<%= form_with model: article do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+
+    <%#display error msg from validators if any have been added to errors attribute of this article%>
+    <%#full_messages_for returns array of usr-friendly error mesgs for specified attribute. empty array of no errors%>
+    <%= article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%#output will look something like this
+<form action="/articles" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" value="...">
+
+  <div>
+    <label for="article_title">Title</label><br>
+    <input type="text" name="article[title]" id="article_title">
+  </div>
+
+  <div>
+    <label for="article_body">Body</label><br>
+    <textarea name="article[body]" id="article_body"></textarea>
+  </div>
+
+  <div>
+    <input type="submit" name="commit" value="Create Article" data-disable-with="Create Article">
+  </div>
+</form>
+%>

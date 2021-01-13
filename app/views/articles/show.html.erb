@@ -2,3 +2,9 @@
 <h1><%= @article.title %></h1>
 
 <p><%= @article.body %></p>
+
+
+<%#link to editing pg for this article%>
+<ul>
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+</ul>

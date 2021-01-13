@@ -35,6 +35,28 @@ class ArticlesController < ApplicationController
     end
   end
 
+  #pull up an article for editing
+  #fetches the article from the database, stores it in @article so can be used when building the form  
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  #(re-)fetches article from the db, attempts to update it w/submitted form data filtered by article_params
+  def update
+    @article = Article.find(params[:id])
+
+    #try to save edited article, if it goes thru, display new article
+    if @article.update(article_params)
+      redirect_to @article
+
+    #if something fails, re-render the edit page (with error mesgs this time)
+    else
+      render :edit
+    end
+  end
+
+
+
   #specify what values are allowed in the params hash (strong typing for params). Otherwise malicious user could potentially submit extra form 
   #fields and overwrite private data.
   private
