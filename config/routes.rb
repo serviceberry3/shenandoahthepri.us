@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   root "articles#index"
 
 
-  #resources method maps all conventional routes for a collection of resources, such as articles
+  #resources method maps all conventional routes for a collection of resources, such as articles ("resourceful routing")
+  #automatically creates routes for destroy, create, edit, etc. eg. maps DELETE /articles/:id requests to the destroy action of ArticlesController
   resources :articles
 
 
