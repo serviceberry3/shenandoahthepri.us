@@ -12,6 +12,13 @@ appropriate form elements.%>
   <div>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
+
+    <%#display error msg from validators if any have been added to errors attribute of this article%>
+    <%#full_messages_for returns array of usr-friendly error mesgs for specified attribute. empty array of no errors%>
+    <%= @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
   </div>
 
   <div>

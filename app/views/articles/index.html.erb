@@ -2,7 +2,7 @@
 
 <h1>Articles</h1>
 
-
+<%#list of all the articles%>
 <ul>
     <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
   <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
@@ -11,6 +11,7 @@
       <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
 
       <% if false %>
+
       <%#This is one option%>
       <a href="/articles/<%= article.id %>">
         <%#output val returned by article.title for each article%>
@@ -23,6 +24,7 @@
         <%#output val returned by article.title for each article%>
         <%= article.title %>
       </a>
+
       <% end %>
 
       <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
@@ -33,3 +35,7 @@
     </li>
   <% end %>
 </ul>
+
+
+<%#link to create new article page%>
+<%= link_to "New Article", new_article_path %>

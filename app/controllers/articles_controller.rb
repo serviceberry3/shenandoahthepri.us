@@ -12,12 +12,13 @@ class ArticlesController < ApplicationController
   end
 
 
-  #'new' action instantiates new article, but doesn't save it. This article will be used in
-  #view when building the form. By default, 'new' action will render app/views/articles/new.html.erb, 
+  #'new' action instantiates new article, but doesn't save it (this is when URL/articles/new is visited, and GET /articles/new rqst). 
+  #This article will be used in view when building the form. By default, 'new' action will render app/views/articles/new.html.erb, 
   def new
     @article = Article.new
   end
 
+  #this happens when new article form is submitted, and POST /articles rqst. Validations are checked
   #'create' action instantiates new article w/values for title and body taken from params Hash, and attempts to save it. If article saved successfully, 
   #redirects browser to the article's page at "[sitename]/articles/#{@article.id}". Else, redisplays form by rendering app/views/articles/new.html.erb.
   def create
@@ -26,6 +27,7 @@ class ArticlesController < ApplicationController
     if @article.save
       #redirect to article's page. redirect_to will cause browser to make new request 
       redirect_to @article
+    #otherwise if some validations fails, etc. : just re-render the new page
     else
       #render renders specified view for current request. **Important to use redirect_to after mutating database or application state.
       #Otherwise, if user refreshes the page, browser will make same request, and mutation will be repeated
