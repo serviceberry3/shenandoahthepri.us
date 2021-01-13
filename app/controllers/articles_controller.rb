@@ -55,7 +55,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
 
+    redirect_to root_path #index in this case. could also redirect to articles_path, etc.
+  end
 
   #specify what values are allowed in the params hash (strong typing for params). Otherwise malicious user could potentially submit extra form 
   #fields and overwrite private data.
