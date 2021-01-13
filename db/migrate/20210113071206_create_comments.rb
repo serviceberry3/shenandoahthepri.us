@@ -7,7 +7,7 @@ class CreateComments < ActiveRecord::Migration[6.1]
       #creates integer column called article_id, an index for it, and a foreign key constraint that points to the id column of the articles table
       t.references :article, null: false, foreign_key: true
 
-      t.timestampsbin/
+      t.timestamps
     end
   end
 end
