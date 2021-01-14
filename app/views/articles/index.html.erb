@@ -2,6 +2,8 @@
 
 <h1>Articles</h1>
 
+Our blog has <%= Article.public_count %> articles and counting!
+
 <%#list of all the articles%>
 <ul>
     <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
@@ -27,10 +29,13 @@
 
       <% end %>
 
-      <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
-      If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
-      Like if we pass article, link_to will call article_path%>
-      <%= link_to article.title, article %>
+      <%#don't show archived articles%>
+      <% unless article.archived? %>
+        <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
+        If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
+        Like if we pass article, link_to will call article_path%>
+        <%= link_to article.title, article %>
+      <% end %>
       
     </li>
   <% end %>

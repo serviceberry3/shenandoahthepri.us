@@ -1,4 +1,8 @@
 class ArticlesController < ApplicationController
+  #force user to be authenticated for every action except index and show
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+
+
   def index
     #controller instance vars can be accessed by the view, so @articles can be seen by app/views/articles/index.html.erb
     @articles = Article.all
