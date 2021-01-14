@@ -4,9 +4,12 @@
 # title is a local var, exists only within its scope (current block/method)
 
 class Article < ApplicationRecord
+    #include some logic from a concerns module. kind of like #include in C
+    include Visible
+
     #when you have has_many on one model linking to belongs_to on the other model, some nice behaviors come stock
     #e.g. if you have instance var @article containing an article, you can retrieve all comments belonging to that art as array using @article.comments
-    has_many :comments
+    has_many :comments, dependent: :destroy #when article is deleted, this makes all associated comments also be deleted
 
 
     #if any validation fails, save will be aborted, appropriate error mesgs will be added to errors attribute of the model object

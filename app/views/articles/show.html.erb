@@ -8,8 +8,7 @@
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
 
-  <%#link to destroy this article%>
-  <%#method: :delete causes link to make DELETE /articles/:id reqst instead of GET%>
+  <%#link to destroy this article, makes DELETE /articles/:id reqst instead of GET%>
   <%#data: option causes confirmation dialog to appear when link is clicked. If user cancels, rqst is aborted. 
   Both of these options powered by feature of Rails called Unobtrusive JavaScript (UJS). JavaScript file that implements these is incl in Rails apps%>
   <li><%= link_to "Destroy", article_path(@article),
