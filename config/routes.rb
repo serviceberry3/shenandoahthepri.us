@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   #resources method maps all conventional routes for a collection of resources, such as articles ("resourceful routing")
   #automatically creates routes for destroy, create, edit, etc. eg. maps DELETE /articles/:id requests to the destroy action of ArticlesController
-  resources :articles
+  resources :articles do
+    #creates comments as nested resrc within articles. This is another pt of capturing hierarchical relationship between articles and comments
+    resources :comments
+  end
 
 
 =begin 
