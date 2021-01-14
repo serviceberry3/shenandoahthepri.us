@@ -1,7 +1,7 @@
 module Visible
     extend ActiveSupport::Concern
 
-
+    #if this module is included, do this
     included do
         VALID_STATUSES = ['public', 'private', 'archived']
 
@@ -14,11 +14,11 @@ module Visible
         def public_count
           where(status: 'public').count
         end
-      end
+    end
 
-
+    #method that can be called to check whether this article is archived
     def archived?
       status == 'archived'
     end
-  end
+end
   
