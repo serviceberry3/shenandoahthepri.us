@@ -1,46 +1,68 @@
 <%# ERB is a templating system that evaluates Ruby code embedded in a document %>
 
-<h1>Articles</h1>
+<html>
+  <head>
+    <%= stylesheet_link_tag "home" %>
+  </head>
+  <body>
+    <main>
+        <div class="grid-container">
+            <div class="Header">
+              Shenanodah the Prius
+            </div>
 
-Our blog has <%= Article.public_count %> articles and counting!
+            <div class="Nav">
+                Nav bar here
+            </div>
 
-<%#list of all the articles%>
-<ul>
-    <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
-  <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
-    
-    <li>
-      <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
+            <div class="Content">
+                <h1>Articles</h1>
 
-      <% if false %>
+                Our blog has <%= Article.public_count %> articles and counting!
 
-      <%#This is one option%>
-      <a href="/articles/<%= article.id %>">
-        <%#output val returned by article.title for each article%>
-        <%= article.title %>
-      </a>
-      
-      
-      <%# this is a second option, using _ helpers created by the resources method in routes%>
-      <a href="<%= article_path(article) %>">
-        <%#output val returned by article.title for each article%>
-        <%= article.title %>
-      </a>
+                <%#list of all the articles%>
+                <ul>
+                    <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
+                  <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
+                    
+                    <li>
+                      <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
 
-      <% end %>
+                      <% if false %>
 
-      <%#don't show archived articles%>
-      <% unless article.archived? %>
-        <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
-        If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
-        Like if we pass article, link_to will call article_path%>
-        <%= link_to article.title, article %>
-      <% end %>
-      
-    </li>
-  <% end %>
-</ul>
+                      <%#This is one option%>
+                      <a href="/articles/<%= article.id %>">
+                        <%#output val returned by article.title for each article%>
+                        <%= article.title %>
+                      </a>
+                      
+                      
+                      <%# this is a second option, using _ helpers created by the resources method in routes%>
+                      <a href="<%= article_path(article) %>">
+                        <%#output val returned by article.title for each article%>
+                        <%= article.title %>
+                      </a>
+
+                      <% end %>
+
+                      <%#don't show archived articles%>
+                      <% unless article.archived? %>
+                        <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
+                        If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
+                        Like if we pass article, link_to will call article_path%>
+                        <%= link_to article.title, article %>
+                      <% end %>
+                      
+                    </li>
+                  <% end %>
+                </ul>
 
 
-<%#link to create new article page%>
-<%= link_to "New Article", new_article_path %>
+                <%#link to create new article page%>
+                <%= link_to "New Article", new_article_path %>
+            </div>
+        </div>
+    </main>
+  </body>
+</html>
+

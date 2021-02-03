@@ -6,7 +6,7 @@ module Visible
         VALID_STATUSES = ['public', 'private', 'archived']
 
         #make sure status is one of the three possible ones
-        validates :status, in: VALID_STATUSES
+        validates :status, inclusion: {in: VALID_STATUSES}
     end
 
     #method to get count of public articles, comments, etc

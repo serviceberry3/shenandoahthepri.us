@@ -1,0 +1,25 @@
+h1 {
+    font-size: x-large;
+}
+
+.grid-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 20% 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "Header Header"
+                         "Nav Content";
+}
+
+.Header {
+    grid-area: Header; 
+}
+
+.Nav { 
+    grid-area: Nav; 
+}
+
+.Content { 
+    grid-area: Content; 
+}
