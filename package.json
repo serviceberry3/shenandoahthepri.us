@@ -19,7 +19,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:tailwind": "tailwind build assets/stylesheets/home.css -o assets/stylesheets/home_out.css"
+    "build:tailwind": "tailwind build app/assets/stylesheets/home.css -o app/assets/stylesheets/home_out.css"
   },
   "author": "Noah Weiner",
   "license": "ISC"

@@ -31175,19 +31175,25 @@ video {
 @font-face {
   font-family: "our-goodwill";
 
-  src: url(Our\ Goodwill.otf);
+  src: url(our-goodwill/Our\ Goodwill.otf) format('opentype');
 }
 
 @font-face {
   font-family: "cimero";
 
-  src: url(../fonts/cimero/CimeroPro.otf) format('opentype');
+  src: url(cimero/CimeroPro.otf) format('opentype');
 }
 
 @font-face {
   font-family: "jonks";
 
   src: url(../fonts/jonks/Jonks\ Font\ Free\ Trial.otf) format('opentype');
+}
+
+@font-face {
+  font-family: "lemon-milk";
+
+  src: url(../fonts/lemon-milk/LemonMilk.otf) format('opentype');
 }
 
 html {
@@ -31202,10 +31208,6 @@ main {
   height: 100%;
 }
 
-h1 {
-  font-size: x-large;
-}
-
 .grid-container {
   height: 100%;
   display: grid;
@@ -31218,7 +31220,11 @@ h1 {
 
 .Header {
   grid-area: Header;
-  font-family: "our-goodwill", monospace;
+  font-family: "cimero", monospace;
+}
+
+.Header h1 {
+  font-size: 5rem;
 }
 
 .Nav {
@@ -31228,6 +31234,10 @@ h1 {
 .Content {
   grid-area: Content;
   font-family: "our-goodwill", monospace;
+}
+
+.Content h1 {
+  font-size: 3rem;
 }
 
 @media (min-width: 640px) {
