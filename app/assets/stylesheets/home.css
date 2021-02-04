@@ -1,12 +1,50 @@
-h1 {
-    font-size: x-large;
+@tailwind base;
+
+@tailwind components;
+
+.test-tw {
+  @apply bg-green-500
+}
+
+@tailwind utilities;
+
+@font-face {
+    font-family: "our-goodwill";
+    src: url(our-goodwill/Our\ Goodwill.otf) format('opentype');
+}
+
+@font-face {
+    font-family: "cimero";
+    src: url(cimero/CimeroPro.otf) format('opentype');
+}
+
+@font-face {
+    font-family: "jonks";
+    src: url(../fonts/jonks/Jonks\ Font\ Free\ Trial.otf) format('opentype');
+}
+
+@font-face {
+    font-family: "lemon-milk";
+    src: url(../fonts/lemon-milk/LemonMilk.otf) format('opentype');
+}
+
+html {
+    height: 100%;
+}
+  
+body {
+    height: 100%;
+}
+
+main {
+    height: 100%;
 }
 
 .grid-container {
     height: 100%;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: 20% 1fr;
+    grid-template-rows: auto 1fr;
     gap: 0px 0px;
     grid-template-areas: "Header Header"
                          "Nav Content";
@@ -14,6 +52,11 @@ h1 {
 
 .Header {
     grid-area: Header; 
+    font-family: "cimero", monospace;
+}
+
+.Header h1 {
+    font-size: 5rem;
 }
 
 .Nav { 
@@ -22,4 +65,9 @@ h1 {
 
 .Content { 
     grid-area: Content; 
+    font-family: "our-goodwill", monospace;
+}
+
+.Content h1 {
+    font-size: 3rem;
 }

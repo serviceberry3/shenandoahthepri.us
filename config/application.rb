@@ -6,10 +6,17 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+#Rails.autoloaders.main.ignore(Rails.root.join('pkg-configs'))
+
+
 module DoahApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    #tell Zeitwerk to ignore node_modules folder from tailwind installation
+    #Zeitwerk is an efficient and thread-safe code loader for Ruby
+    Rails.autoloaders.main.ignore(Rails.root.join('app/node_modules'))
 
     # Configuration for the application, engines, and railties goes here.
     #

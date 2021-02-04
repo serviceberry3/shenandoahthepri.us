@@ -2,26 +2,58 @@
 
 <html>
   <head>
+    <%= stylesheet_link_tag "home_out" %>
     <%= stylesheet_link_tag "home" %>
   </head>
+
   <body>
     <main>
-        <div class="grid-container">
-            <div class="Header">
-              Shenanodah the Prius
+      
+          <div class="grid-container">
+            <!--header section-->
+            <div class="Header bg-blue-200">
+              <h1 class="py-2 pl-10">Shenandoah the Prius</h1>
             </div>
 
-            <div class="Nav">
-                Nav bar here
+            <!--navigation panel-->
+            <div class="Nav bg-gray-900 flex flex-col">
+              <!--work button-->
+              <div class="p-3 font-titillium text-4xl text-center">
+                <div class="nav-button group px-1 pt-3 pb-1 rounded-md text-white uppercase bg-blue-600">
+                  <a href="work.html">Car</a>
+                </div>
+              </div>
+
+              <!--play button-->
+              <div class="p-3 font-amatic text-5xl text-center">
+                <div class="nav-button group px-1 pb-2 rounded-md text-white uppercase bg-blue-600">
+                  <a href="play.html">Maps</a>
+                </div>
+              </div>
+
+              <!--line button-->
+              <div class="p-3 font-sofia text-center text-4xl">
+                <div class="nav-button group px-1 pt-3 pb-1 rounded-md text-white uppercase bg-blue-600">
+                  <a href="line.html">Stats</a>
+                </div>
+              </div>
+
             </div>
 
-            <div class="Content">
-                <h1>Articles</h1>
+            <!--content section-->
+            <div class="Content bg-gray-200 p-14 text-2xl">
+                <h1>Hello! Welcome to Shenandoah's journal website.</h1>
+                <br>
 
-                Our blog has <%= Article.public_count %> articles and counting!
+                <h2>Recent activity</h2>
+                <br>
+
+
+                <p>Our blog has <span class="font-mono"> <%= Article.public_count %></span> articles and counting:</p>
+
 
                 <%#list of all the articles%>
-                <ul>
+                <ul class="pl-4">
                     <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
                   <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
                     
@@ -35,7 +67,6 @@
                         <%#output val returned by article.title for each article%>
                         <%= article.title %>
                       </a>
-                      
                       
                       <%# this is a second option, using _ helpers created by the resources method in routes%>
                       <a href="<%= article_path(article) %>">
@@ -58,10 +89,15 @@
                 </ul>
 
 
+                <br>
+                <br>
+                <br>
                 <%#link to create new article page%>
                 <%= link_to "New Article", new_article_path %>
-            </div>
-        </div>
+
+            </div>  <!--end content section of grid-->
+
+          </div> <!--end grid container-->
     </main>
   </body>
 </html>
