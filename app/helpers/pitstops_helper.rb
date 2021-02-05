@@ -1,0 +1,2 @@
+module PitstopsHelper
+end

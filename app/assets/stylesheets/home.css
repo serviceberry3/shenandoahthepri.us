@@ -20,12 +20,12 @@
 
 @font-face {
     font-family: "jonks";
-    src: url(../fonts/jonks/Jonks\ Font\ Free\ Trial.otf) format('opentype');
+    src: url(jonks/Jonks\ Font\ Free\ Trial.otf) format('opentype');
 }
 
 @font-face {
     font-family: "lemon-milk";
-    src: url(../fonts/lemon-milk/LemonMilk.otf) format('opentype');
+    src: url(lemon-milk/LemonMilk.otf) format('opentype');
 }
 
 html {
@@ -48,6 +48,10 @@ main {
     gap: 0px 0px;
     grid-template-areas: "Header Header"
                          "Nav Content";
+}
+
+.font-jonks {
+    font-family: "jonks", monospace;
 }
 
 .Header {

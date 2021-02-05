@@ -5,13 +5,15 @@ class ArticlesController < ApplicationController
 
   def index
     #controller instance vars can be accessed by the view, so @articles can be seen by app/views/articles/index.html.erb
+    #if don't explicitly render something at end of controller action, Rails will automatically look for action_name.html.erb template in
+    #controller's view path and render it. In this case, Rails will render the app/views/articles/index.html.erb file
     @articles = Article.all
   end
 
 
   def show
     #find specific article from id captured by route parameter
-    #Returned art is stored in @article instance var, accessible by the view. By default, the show action will render app/views/articles/show.html.erb
+    #Returned art is stored in @article instance var, defined in ctrlr, accessible by view. By default, show action will render app/views/articles/show.html.erb
     @article = Article.find(params[:id])
   end
 
@@ -55,6 +57,9 @@ class ArticlesController < ApplicationController
 
     #if something fails, re-render the edit page (with error mesgs this time)
     else
+      #NOTE: render :action doesn't run any code in target action, so nothing will set up vars, etc. that the index view will probably require. 
+      #One way to fix this is to use redirect_to action: :edit, which will make fresh request for edit pg, the code in edit method will run, 
+      #and all will be well
       render :edit
     end
   end

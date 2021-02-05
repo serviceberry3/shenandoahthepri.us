@@ -1,104 +1,55 @@
 <%# ERB is a templating system that evaluates Ruby code embedded in a document %>
 
-<html>
-  <head>
-    <%= stylesheet_link_tag "home_out" %>
-    <%= stylesheet_link_tag "home" %>
-  </head>
+<h1>Hello! Welcome to Shenandoah's journal website.</h1>
+<br>
 
-  <body>
-    <main>
+<h2>Recent activity</h2>
+<br>
+
+
+<p>Our blog has <span class="font-mono"> <%= Article.public_count %></span> articles and counting:</p>
+
+
+<%#list of all the articles%>
+<ul class="pl-4">
+    <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
+  <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
+    
+    <li>
+      <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
+
+      <% if false %>
+
+      <%#This is one option%>
+      <a href="/articles/<%= article.id %>">
+        <%#output val returned by article.title for each article%>
+        <%= article.title %>
+      </a>
       
-          <div class="grid-container">
-            <!--header section-->
-            <div class="Header bg-blue-200">
-              <h1 class="py-2 pl-10">Shenandoah the Prius</h1>
-            </div>
+      <%# this is a second option, using _ helpers created by the resources method in routes%>
+      <a href="<%= article_path(article) %>">
+        <%#output val returned by article.title for each article%>
+        <%= article.title %>
+      </a>
 
-            <!--navigation panel-->
-            <div class="Nav bg-gray-900 flex flex-col">
-              <!--work button-->
-              <div class="p-3 font-titillium text-4xl text-center">
-                <div class="nav-button group px-1 pt-3 pb-1 rounded-md text-white uppercase bg-blue-600">
-                  <a href="work.html">Car</a>
-                </div>
-              </div>
+      <% end %>
 
-              <!--play button-->
-              <div class="p-3 font-amatic text-5xl text-center">
-                <div class="nav-button group px-1 pb-2 rounded-md text-white uppercase bg-blue-600">
-                  <a href="play.html">Maps</a>
-                </div>
-              </div>
-
-              <!--line button-->
-              <div class="p-3 font-sofia text-center text-4xl">
-                <div class="nav-button group px-1 pt-3 pb-1 rounded-md text-white uppercase bg-blue-600">
-                  <a href="line.html">Stats</a>
-                </div>
-              </div>
-
-            </div>
-
-            <!--content section-->
-            <div class="Content bg-gray-200 p-14 text-2xl">
-                <h1>Hello! Welcome to Shenandoah's journal website.</h1>
-                <br>
-
-                <h2>Recent activity</h2>
-                <br>
+      <%#don't show archived articles%>
+      <% unless article.archived? %>
+        <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
+        If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
+        Like if we pass article, link_to will call article_path%>
+        <%= link_to article.title, article %>
+      <% end %>
+      
+    </li>
+  <% end %>
+</ul>
 
 
-                <p>Our blog has <span class="font-mono"> <%= Article.public_count %></span> articles and counting:</p>
-
-
-                <%#list of all the articles%>
-                <ul class="pl-4">
-                    <%# this tag means evaluate the enclosed Ruby code (anything you could write in reg Ruby program) %>
-                  <% @articles.each do |article| %> <%#equal to 'for article in articles'%>
-                    
-                    <li>
-                      <%# this tag w/the equals sign means eval the enclosed ruby code and output the val it returns%>
-
-                      <% if false %>
-
-                      <%#This is one option%>
-                      <a href="/articles/<%= article.id %>">
-                        <%#output val returned by article.title for each article%>
-                        <%= article.title %>
-                      </a>
-                      
-                      <%# this is a second option, using _ helpers created by the resources method in routes%>
-                      <a href="<%= article_path(article) %>">
-                        <%#output val returned by article.title for each article%>
-                        <%= article.title %>
-                      </a>
-
-                      <% end %>
-
-                      <%#don't show archived articles%>
-                      <% unless article.archived? %>
-                        <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
-                        If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
-                        Like if we pass article, link_to will call article_path%>
-                        <%= link_to article.title, article %>
-                      <% end %>
-                      
-                    </li>
-                  <% end %>
-                </ul>
-
-
-                <br>
-                <br>
-                <br>
-                <%#link to create new article page%>
-                <%= link_to "New Article", new_article_path %>
-
-            </div>  <!--end content section of grid-->
-
-          </div> <!--end grid container-->
-    </main>
-  </body>
-</html>
+<br>
+<br>
+<br>
+<%#link to create new article page%>
+<%= link_to "New Article", new_article_path %>
 

@@ -8,9 +8,54 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag "home_out" %>
+    <%= stylesheet_link_tag "home" %>
   </head>
 
   <body>
-    <%= yield %>
+    <main>
+      <div class="grid-container">
+            <!--header section-->
+            <div class="Header select-none bg-blue-200">
+              <h1 class="py-2 pl-10">Shenandoah the Prius</h1>
+            </div>
+
+            <!--navigation panel-->
+            <div class="Nav bg-gray-900 flex flex-col">
+              <!--work button-->
+              <div class="p-3 text-5xl text-center font-jonks">
+                <div class="nav-button group p-2 rounded-md text-white uppercase bg-blue-600">
+                  <a href="/pages/car/">Car</a>
+                </div>
+              </div>
+
+              <!--play button-->
+              <div class="p-3 text-5xl text-center font-jonks">
+                <div class="nav-button group p-2 rounded-md text-white uppercase bg-blue-600">
+                  <a href="/pages/maps/">Maps</a>
+                </div>
+              </div>
+
+              <!--line button-->
+              <div class="p-3 text-center text-5xl font-jonks">
+                <div class="nav-button group p-2 rounded-md text-white uppercase bg-blue-600">
+                  <a href="/pages/stats/">Stats</a>
+                </div>
+              </div>
+
+            </div>
+
+            <!--content section-->
+            <div class="Content bg-gray-200 p-14 text-2xl">
+                <%#insert entire contents of view currently being rendered%>
+                <%= yield %>
+
+            </div>  <!--end content section of grid-->
+
+          </div> <!--end grid container-->
+
+      
+    </main>
   </body>
 </html>
