@@ -39,5 +39,6 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignore all assets
-app/assets
+# Ignore all gpx and images
+app/assets/gpx
+app/assets/images
