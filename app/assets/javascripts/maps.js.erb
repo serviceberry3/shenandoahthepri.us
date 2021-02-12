@@ -1,0 +1,51 @@
+//set coords, and zoom factor
+var mymap = L.map('mapid').setView([38.134557, -82.441406], 5);
+   
+//add MapBox streets tile layer
+L.tileLayer(
+    //url template for the tile images
+    'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        //attribution text
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+
+        //offset zoom
+        zoomOffset: -1,
+        accessToken: 'pk.eyJ1Ijoic2VydmljZWJlcnJ5IiwiYSI6ImNrbDFyOWl4NzA1dmwydnRoMzF3M2Q4M3oifQ.ORicV2xW7BG_FqwaCGqU5Q'
+}
+).addTo(mymap);
+
+
+var marker = L.marker([39.782761, -86.150214]).addTo(mymap);
+
+//bind attaches a popup with the specified HTML content to your marker so popup appears when you click on object
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+//circle.bindPopup("I am a circle.");
+//polygon.bindPopup("I am a polygon.");
+
+var assets = assets || {};
+assets.gpx = assets.gpx || {};
+
+<% Dir.glob("#{Rails.root}/app/assets/gpx/*.GPX") do |icon| %>
+<% file_name = File.basename(icon) %>
+assets.gpx['<%= file_name %>'] = '<%= asset_path(file_name) %>';
+<% end %>
+
+console.log(assets);
+
+
+for (var key in assets.gpx) {
+    console.log(assets.gpx[key]);
+    var gpx = assets.gpx[key]; // URL to your GPX file or the GPX itself
+    new L.GPX(gpx, {async: true,
+        marker_options: {
+            startIconUrl: '<%= asset_path('pin-icon-start.png') %>',
+            endIconUrl: '<%= asset_path('pin-icon-end.png') %>',
+            shadowUrl: '<%= asset_path('pin-shadow.png') %>'
+      }
+    }).on('loaded', function(e) {
+      mymap.fitBounds(e.target.getBounds());
+    }).addTo(mymap);
+}
