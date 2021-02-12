@@ -17,11 +17,14 @@ L.tileLayer(
 }
 ).addTo(mymap);
 
-
+/*
 var marker = L.marker([39.782761, -86.150214]).addTo(mymap);
+var icon = marker.options.icon;
+icon.options.iconSize = [20, 28];
+marker.setIcon(icon);
 
 //bind attaches a popup with the specified HTML content to your marker so popup appears when you click on object
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();*/
 //circle.bindPopup("I am a circle.");
 //polygon.bindPopup("I am a polygon.");
 
@@ -43,7 +46,15 @@ for (var key in assets.gpx) {
         marker_options: {
             startIconUrl: '<%= asset_path('pin-icon-start.png') %>',
             endIconUrl: '<%= asset_path('pin-icon-end.png') %>',
-            shadowUrl: '<%= asset_path('pin-shadow.png') %>'
+            shadowUrl: '<%= asset_path('pin-shadow.png') %>',
+            wptIconUrls : {
+              '': '<%= asset_path('pin-icon-wpt.png') %>',
+            },
+            wptIconUrl: '<%= asset_path('pin-icon-wpt.png') %>',
+            iconSize: [8, 12],
+            shadowSize: [8, 12],
+            iconAnchor: [4, 12],
+            shadowAnchor: [2, 12]
       }
     }).on('loaded', function(e) {
       mymap.fitBounds(e.target.getBounds());
