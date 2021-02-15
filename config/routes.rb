@@ -27,9 +27,9 @@ Rails.application.routes.draw do
 =begin comment
   get "/articles", to: "articles#index"
 
-  #the :id part designates a route parameter, which captures a segment of the route's path and puts that val
+  #the :id part below designates a route parameter, which captures a segment of the route's path and puts that val
   #into the ```params``` Hash which is accessible by the controller action
-  #ex. GET http://localhost:3000/articles/1 1 is the id, which would then be accessible as params[:id] in the ```show``` action of ArticlesController
+  #ex. GET http://localhost:3000/articles/1: 1 is the id, which would then be accessible as params[:id] in the ```show``` action of ArticlesController
   get "/articles/:id", to: "articles#show"
 =end
 

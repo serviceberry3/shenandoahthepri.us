@@ -1,6 +1,9 @@
 require_relative "boot"
 
 require "rails/all"
+require 'time'
+require 'nokogiri'
+require 'haversine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,6 +16,11 @@ module DoahApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    #timezone setup
+    config.time_zone = 'Eastern Time (US & Canada)' # Your local time zone
+    config.active_record.default_timezone = :local
+    config.active_record.time_zone_aware_attributes = false
 
     #tell Zeitwerk to ignore node_modules folder from tailwind installation
     #Zeitwerk is an efficient and thread-safe code loader for Ruby

@@ -1,5 +1,5 @@
-//set coords, and zoom factor
-var mymap = L.map('mapid').setView([38.134557, -82.441406], 5);
+//create leaflet map
+var mymap = L.map('mapid');
    
 //add MapBox streets tile layer
 L.tileLayer(
@@ -60,3 +60,5 @@ for (var key in assets.gpx) {
       mymap.fitBounds(e.target.getBounds());
     }).addTo(mymap);
 }
+
+mymap.setView([38.134557, -80.441406], 1);

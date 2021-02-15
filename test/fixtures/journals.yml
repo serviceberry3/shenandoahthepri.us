@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  body: MyText
+  x: 1.5
+  'y': 1.5
+  date: 2021-02-14
+
+two:
+  title: MyString
+  body: MyText
+  x: 1.5
+  'y': 1.5
+  date: 2021-02-14

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_072248) do
+ActiveRecord::Schema.define(version: 2021_02_14_211057) do
 
   create_table "articles", charset: "latin1", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,17 @@ ActiveRecord::Schema.define(version: 2021_01_14_072248) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status", default: "public"
+  end
+
+  create_table "cities", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.date "visit_date"
+    t.text "review"
+    t.integer "rating"
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", charset: "latin1", force: :cascade do |t|
@@ -30,5 +41,73 @@ ActiveRecord::Schema.define(version: 2021_01_14_072248) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
+  create_table "dinings", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.date "visit_date"
+    t.text "review"
+    t.integer "rating"
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "journals", charset: "latin1", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.float "lat"
+    t.float "long"
+    t.date "date"
+    t.boolean "floating"
+    t.bigint "track_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["track_id"], name: "index_journals_on_track_id"
+  end
+
+  create_table "parks", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.date "visit_date"
+    t.text "review"
+    t.integer "rating"
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pitstops", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.date "visit_date"
+    t.text "review"
+    t.integer "rating"
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shoppings", charset: "latin1", force: :cascade do |t|
+    t.string "name"
+    t.date "visit_date"
+    t.text "review"
+    t.integer "rating"
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tracks", charset: "latin1", force: :cascade do |t|
+    t.string "filename"
+    t.date "date"
+    t.float "distance"
+    t.float "elev_change"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "comments", "articles"
+  add_foreign_key "journals", "tracks"
 end
