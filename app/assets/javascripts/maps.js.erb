@@ -31,16 +31,53 @@ marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();*/
 var assets = assets || {};
 assets.gpx = assets.gpx || {};
 
+function baseName(str)
+{
+   var base = new String(str).substring(str.lastIndexOf('/') + 1); 
+   console.log(base);
+   return base;
+}
+
+//var tracks_json = '<%= @tracks.to_json %>';
+//console.log(tracks_json);
+
+
 <% Dir.glob("#{Rails.root}/app/assets/gpx/*.GPX") do |icon| %>
-<% file_name = File.basename(icon) %>
-assets.gpx['<%= file_name %>'] = '<%= asset_path(file_name) %>';
+  <% file_name = File.basename(icon) %>
+  assets.gpx['<%= file_name %>'] = '<%= asset_path(file_name) %>';
 <% end %>
 
-console.log(assets);
+//console.log("Testing");
+//console.log('<%= @tracks %>');
+
+var tracks_json = JSON.parse(document.getElementsByName("test")[0].getAttribute("content"));
+
+console.log(tracks_json);
+//console.log(tracks_json.length);
+
+/*
+$.ajax({
+            type: "GET",
+            url: "/articles/8", // should be mapped in routes.rb
+            data: {},
+            datatype: "html", // check more option
+            success: function(data) {
+                        // handle response data
+                      },
+            async: true
+          }); */
+
+for (entry in tracks_json) {
+  //console.log(tracks_json[entry].filename);
+  //console.log(entry.filename);
+
+  file_name = tracks_json[entry].filename
+  assets.gpx[file_name] = getAsset(baseName(file_name)); //baseName(file_name);
+}
 
 
 for (var key in assets.gpx) {
-    console.log(assets.gpx[key]);
+    //console.log(assets.gpx[key]);
     var gpx = assets.gpx[key]; // URL to your GPX file or the GPX itself
     new L.GPX(gpx, {async: true,
         marker_options: {

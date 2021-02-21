@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
     #find specific article from id captured by route parameter
     #Returned art is stored in @article instance var, defined in ctrlr, accessible by view. By default, show action will render app/views/articles/show.html.erb
     @article = Article.find(params[:id])
+    @article_json = @article.to_json
   end
 
 

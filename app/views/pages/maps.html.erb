@@ -7,12 +7,21 @@
    crossorigin=""></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
 
+<% javascript_tag do %>
+    var tracks_json = <%= @tracks.to_json %>;
+<% end %>
+
+
 <%= stylesheet_link_tag "maps" %>
+
+<%= tag :meta, :name => "test", :content => @tracks.to_json %>
 
 <h1>Doah's Journeys</h1>
 <br>
 <div id="mapid" gpx_path=<%= asset_path 'test_gpx_ohio.GPX' %>></div>
 
+<%= javascript_include_tag "assets" %>
 <%= javascript_include_tag "maps" %>
+
         
 <script></script>

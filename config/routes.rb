@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   #This will send every url that matches /pages/ to our pages controller we created above, passing :page as parameter
   get "/pages/:page" => "pages#show"
 
-
-
+    
+  #add assets as resrc so we can use AJAX to request asset paths
+  resources :assets, only: :index
 
 =begin comment
   get "/articles", to: "articles#index"

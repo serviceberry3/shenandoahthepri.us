@@ -1,0 +1,5 @@
+<% routes = Rails.application.routes.url_helpers %>
+
+function getAsset(name) {
+  return Promise.resolve($.getJSON('<%= routes.assets_path %>', {name: name}));
+}
