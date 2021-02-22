@@ -1,0 +1,43 @@
+var tracks_json = JSON.parse(document.getElementsByName("tracks")[0].getAttribute("content"));
+
+
+
+function baseName(str)
+{
+   var base = new String(str).substring(str.lastIndexOf('/') + 1); 
+   return base;
+}
+
+console.log(tracks_json);
+
+/*
+$.ajax({
+            type: "GET",
+            url: "/articles/8", // should be mapped in routes.rb
+            data: {},
+            datatype: "html", // check more option
+            success: function(data) {
+                        // handle response data
+                      },
+            async: true
+          }); */
+
+async function fill_ass_paths() {
+    //clear
+    var assets = assets || {};
+    assets.gpx = assets.gpx || {};
+
+    for (entry in tracks_json) {
+        file_name = tracks_json[entry].filename
+
+        console.log(file_name);
+
+        //Returns immediately (asynchronous)
+        await getAsset(baseName(file_name)).then(value => {
+            console.log(String(value.path));
+            assets.gpx[file_name] = value.path;
+        });
+    }
+
+    return assets;
+}

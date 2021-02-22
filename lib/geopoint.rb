@@ -1,5 +1,3 @@
-
-
 # Class holds coordinates and elevation of single point
 class GeoPoint
     attr_accessor :latitude, :longitude, :elevation

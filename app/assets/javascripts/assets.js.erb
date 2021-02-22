@@ -1,5 +1,13 @@
 <% routes = Rails.application.routes.url_helpers %>
 
 function getAsset(name) {
-  return Promise.resolve($.getJSON('<%= routes.assets_path %>', {name: name}));
+    //getJSON: get JSON data using an AJAX HTTP GET request.
+    //arg1: specifies URL to send request to
+    //arg2: data: specifies data to be sent to server
+    //returned Promise should be filled with the value
+
+    //Promise is an object representing the eventual completion or failure of an asynchronous operation
+    //a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function
+  return Promise.resolve($.getJSON('<%= routes.assets_path %>', {name: name})); //for URL, do Rails.application.routes.url_helpers.assets_path, which equates to
+                                                                                //http://shenandoahthepri.us/assets. Pass name as parameter
 }

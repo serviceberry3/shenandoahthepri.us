@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   #add assets as resrc so we can use AJAX to request asset paths
   resources :assets, only: :index
 
+  #add cities as resource
+  resources :cities
+
 =begin comment
   get "/articles", to: "articles#index"
 

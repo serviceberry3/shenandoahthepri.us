@@ -1,3 +1,7 @@
+ //div containing the leaflet div
+ var map_div = document.getElementById('map_holder');
+map_div.style.visibility = 'hidden';
+
 //create leaflet map
 var mymap = L.map('mapid');
    
@@ -18,84 +22,73 @@ L.tileLayer(
 ).addTo(mymap);
 
 /*
-var marker = L.marker([39.782761, -86.150214]).addTo(mymap);
-var icon = marker.options.icon;
-icon.options.iconSize = [20, 28];
-marker.setIcon(icon);
+
 
 //bind attaches a popup with the specified HTML content to your marker so popup appears when you click on object
 marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();*/
 //circle.bindPopup("I am a circle.");
 //polygon.bindPopup("I am a polygon.");
 
-var assets = assets || {};
-assets.gpx = assets.gpx || {};
+function map_cities() {
+  var cities_json = JSON.parse(document.getElementsByName("cities")[0].getAttribute("content"));
 
-function baseName(str)
-{
-   var base = new String(str).substring(str.lastIndexOf('/') + 1); 
-   console.log(base);
-   return base;
+  for (city in cities_json) {
+      var marker = L.marker([cities_json[city].lat, cities_json[city].long]).addTo(mymap);
+      var icon = marker.options.icon;
+      icon.options.iconSize = [16, 24];
+      icon.options.iconAnchor = [8, 24];
+      marker.setIcon(icon);
+
+
+      marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review).openPopup();      
+  }
 }
 
-//var tracks_json = '<%= @tracks.to_json %>';
-//console.log(tracks_json);
+async function map_gpx_files() {
+  //await AJAX asset path requests
+  var assets = await fill_ass_paths();
 
+  console.log("running for loop...");
+  for (var key in assets.gpx) {
+      var gpx = assets.gpx[key]; // URL to your GPX file or the GPX itself
+      console.log("Key is " + key + ", gpx is " + gpx);
+      new L.GPX(gpx, {async: true,
+          marker_options: {
+              startIconUrl: '<%= asset_path('pin-icon-start.png') %>',
+              endIconUrl: '<%= asset_path('pin-icon-end.png') %>',
+              shadowUrl: '<%= asset_path('pin-shadow.png') %>',
+              wptIconUrls : {
+                '': '<%= asset_path('pin-icon-wpt.png') %>',
+              },
+              wptIconUrl: '<%= asset_path('pin-icon-wpt.png') %>',
+              iconSize: [8, 12],
+              shadowSize: [8, 12],
+              iconAnchor: [4, 12],
+              shadowAnchor: [2, 12]
+        }
+      }).on('loaded', function(e) {
+        mymap.fitBounds(e.target.getBounds());
+      }).addTo(mymap);
+  }
 
-<% Dir.glob("#{Rails.root}/app/assets/gpx/*.GPX") do |icon| %>
-  <% file_name = File.basename(icon) %>
-  assets.gpx['<%= file_name %>'] = '<%= asset_path(file_name) %>';
-<% end %>
-
-//console.log("Testing");
-//console.log('<%= @tracks %>');
-
-var tracks_json = JSON.parse(document.getElementsByName("test")[0].getAttribute("content"));
-
-console.log(tracks_json);
-//console.log(tracks_json.length);
-
-/*
-$.ajax({
-            type: "GET",
-            url: "/articles/8", // should be mapped in routes.rb
-            data: {},
-            datatype: "html", // check more option
-            success: function(data) {
-                        // handle response data
-                      },
-            async: true
-          }); */
-
-for (entry in tracks_json) {
-  //console.log(tracks_json[entry].filename);
-  //console.log(entry.filename);
-
-  file_name = tracks_json[entry].filename
-  assets.gpx[file_name] = getAsset(baseName(file_name)); //baseName(file_name);
+  //now let's add the cities
+  map_cities();
 }
 
+//to be executed last, after all map drawing is complete
+function finish() {
+  mymap.setView([38.134557, -80.441406], 1);
+  console.log("All done");
+  map_div.style.visibility = 'visible';
 
-for (var key in assets.gpx) {
-    //console.log(assets.gpx[key]);
-    var gpx = assets.gpx[key]; // URL to your GPX file or the GPX itself
-    new L.GPX(gpx, {async: true,
-        marker_options: {
-            startIconUrl: '<%= asset_path('pin-icon-start.png') %>',
-            endIconUrl: '<%= asset_path('pin-icon-end.png') %>',
-            shadowUrl: '<%= asset_path('pin-shadow.png') %>',
-            wptIconUrls : {
-              '': '<%= asset_path('pin-icon-wpt.png') %>',
-            },
-            wptIconUrl: '<%= asset_path('pin-icon-wpt.png') %>',
-            iconSize: [8, 12],
-            shadowSize: [8, 12],
-            iconAnchor: [4, 12],
-            shadowAnchor: [2, 12]
-      }
-    }).on('loaded', function(e) {
-      mymap.fitBounds(e.target.getBounds());
-    }).addTo(mymap);
+  //remove the loading gif
+  $('#loading').remove();
 }
 
-mymap.setView([38.134557, -80.441406], 1);
+//draw all of the gpx files (async function which waits for asset path Promises to all be filled), 
+//then execute some finishing code
+map_gpx_files().then(finish);
+
+
+
+

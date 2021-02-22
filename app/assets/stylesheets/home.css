@@ -63,6 +63,14 @@ main {
     font-size: 5rem;
 }
 
+.Header h1:hover {
+    color: white;
+}
+
+.Header h1:active {
+    color: black;
+}
+
 .Nav { 
     grid-area: Nav; 
 }

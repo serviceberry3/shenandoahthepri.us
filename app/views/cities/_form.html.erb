@@ -1,0 +1,43 @@
+<%#using the article model as reference, do a form like this:%>
+<%= form_with model: city do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+
+    <%#display error msg from validators if any have been added to errors attribute of this article%>
+    <%#full_messages_for returns array of usr-friendly error mesgs for specified attribute. empty array of no errors%>
+    <%= city.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= form.label :visit_date %><br>
+    <%= form.text_field :visit_date %>
+  </div>
+
+  <div>
+    <%= form.label :review %><br>
+    <%= form.text_area :review %>
+  </div>
+
+  <div>
+    <%= form.label :rating %><br>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div>
+    <%= form.label :lat %><br>
+    <%= form.text_field :lat %>
+  </div>
+
+  <div>
+    <%= form.label :long %><br>
+    <%= form.text_field :long %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.4.0/gpx.min.js"></script>
+
+<%= stylesheet_link_tag "stats" %>
+
+<%= tag :meta, :name => "test", :content => @tracks.to_json %>
+
+<h1>Stats about Doah</h1>
+<br>
+<div>
+    <ul>
+        <li>
+            ESTIMATED odo: <span class="font-mono"> <%= @odo %> </span>
+        </li>
+        <li>
+            ACTUAL odo (updated <span class="font-mono">02/21/21</span>): <span class="font-sans">161478</span>
+        </li>
+    </ul>
+</div>
+
+<%= javascript_include_tag "assets" %>

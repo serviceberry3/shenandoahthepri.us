@@ -9,9 +9,6 @@ require 'haversine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-#Rails.autoloaders.main.ignore(Rails.root.join('pkg-configs'))
-
-
 module DoahApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

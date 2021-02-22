@@ -14,14 +14,23 @@
 
 <%= stylesheet_link_tag "maps" %>
 
-<%= tag :meta, :name => "test", :content => @tracks.to_json %>
+<%= tag :meta, :name => "tracks", :content => @tracks.to_json %>
+<%= tag :meta, :name => "cities", :content => @cities.to_json %>
 
 <h1>Doah's Journeys</h1>
 <br>
-<div id="mapid" gpx_path=<%= asset_path 'test_gpx_ohio.GPX' %>></div>
+
+<div id="loading">
+    <img id="loading-image" src='<%= asset_path("ajax-loader.gif") %>' alt="Loading..." />
+</div>
+
+<div id="map_holder">
+  <div id="mapid">
+  </div>
+</div>
 
 <%= javascript_include_tag "assets" %>
+<%= javascript_include_tag "tracks_analysis" %>
 <%= javascript_include_tag "maps" %>
 
-        
 <script></script>
