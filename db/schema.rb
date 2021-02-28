@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_02_14_211057) do
 
-  create_table "articles", charset: "latin1", force: :cascade do |t|
+  create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.string "status", default: "public"
   end
 
-  create_table "cities", charset: "latin1", force: :cascade do |t|
+  create_table "cities", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "visit_date"
     t.text "review"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", charset: "latin1", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
     t.bigint "article_id", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
 
-  create_table "dinings", charset: "latin1", force: :cascade do |t|
+  create_table "dinings", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "visit_date"
     t.text "review"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "journals", charset: "latin1", force: :cascade do |t|
+  create_table "journals", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.float "lat"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.index ["track_id"], name: "index_journals_on_track_id"
   end
 
-  create_table "parks", charset: "latin1", force: :cascade do |t|
+  create_table "parks", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "visit_date"
     t.text "review"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "pitstops", charset: "latin1", force: :cascade do |t|
+  create_table "pitstops", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "visit_date"
     t.text "review"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "shoppings", charset: "latin1", force: :cascade do |t|
+  create_table "shoppings", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.date "visit_date"
     t.text "review"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_02_14_211057) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tracks", charset: "latin1", force: :cascade do |t|
+  create_table "tracks", charset: "utf8mb4", force: :cascade do |t|
     t.string "filename"
     t.date "date"
     t.float "distance"
