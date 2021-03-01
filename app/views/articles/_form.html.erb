@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "articles" %>
+
 <%#NOTE: form builder automatically configures form to make appropriate kind of rqst, based on whether model object has been previously saved.%>
 <%#this is a shared view called a partial (like a template)%>
 <%#partials are shared code, so shouldn't depend on specific instance vars set by controller action. Instead, pass art to partial as local var.%>
@@ -23,6 +25,7 @@ appropriate form elements.%>
     <% end %>
 
   </div>
+  <br>
 
   <div>
     <%= form.label :body %><br>
@@ -30,7 +33,7 @@ appropriate form elements.%>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Create Post", class: "create-button" %>
   </div>
 <% end %>
 

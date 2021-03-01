@@ -1,6 +1,6 @@
 <%#partial for comment creation form%>
 
-
+<%= stylesheet_link_tag "comments" %>
 
 <%#adds form that creates new comment by calling CommentsController create action. form_with call here uses array, which will build nested route, 
 such as /articles/1/comments%>
@@ -11,11 +11,14 @@ such as /articles/1/comments%>
     <%= form.label :commenter %><br>
     <%= form.text_field :commenter %>
   </p>
+  <br>
   <p>
     <%= form.label :body %><br>
     <%= form.text_area :body %>
   </p>
   <p>
-    <%= form.submit %>
+    <button class="">
+        <%= form.submit class: "create-button" %>
+    </button>
   </p>
 <% end %>

@@ -28,6 +28,16 @@
     src: url(lemon-milk/LemonMilk.otf) format('opentype');
 }
 
+@font-face {
+    font-family: "likeguard";
+    src: url(likeguard/LikeguardDemoBold.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "wavemax";
+    src: url(wavemax/wv/Wavemax\ Trial.otf) format('opentype');
+}
+
 html {
     height: 100%;
 }
@@ -52,6 +62,14 @@ main {
 
 .font-jonks {
     font-family: "jonks", monospace;
+}
+
+.font-likeguard {
+    font-family: "likeguard", monospace;
+}
+
+.font-wavemax {
+    font-family: "wavemax", monospace;
 }
 
 .Header {
@@ -81,5 +99,42 @@ main {
 }
 
 .Content h1 {
+    font-size: 5rem;
+}
+
+.Content h2 {
     font-size: 3rem;
+}
+
+.Content .medium {
+    font-size: 2rem;
+}
+
+ul {
+    list-style-type:disc;
+}
+  
+.ul-lvl2 {
+    list-style-type: square;
+}
+
+.emph {
+    font-family: monospace;
+    font-size: 3rem;
+}
+
+.article-link {
+
+}
+
+.article-link:hover {
+    color: green;
+}
+
+.article-link:active {
+    color: purple;
+}
+
+.new-art-button:hover {
+    background-color:brown;
 }

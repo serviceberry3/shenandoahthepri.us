@@ -12,14 +12,31 @@
 <%= tag :meta, :name => "test", :content => @tracks.to_json %>
 
 <h1>Stats about Doah</h1>
-<br>
+<br><br>
 <div>
-    <ul>
+    <ul class="font-likeguard text-4xl">
         <li>
-            ESTIMATED odo: <span class="font-mono"> <%= @odo %> </span>
+            ESTIMATED odo: <span class="stat"> <%= @odo %></span>mi
         </li>
+        <br>
         <li>
-            ACTUAL odo (updated <span class="font-mono">02/21/21</span>): <span class="font-sans">161478</span>
+            ACTUAL odo (updated 02/21/21): <span class="stat">161478</span>mi
+        </li>
+        <br>
+        <li>
+            States visited under my ownership (updated 03/01/21): <span class="stat">17</span>
+        </li>
+        <br>
+        <li>
+            Consumption average (as of 03/01/21): <span class="stat">17</span>mpg
+        </li>
+        <br>
+        <li>
+            ESTIMATED lifetime gas burned: <span class="stat">[]</span>gal
+        </li>
+        <br>
+        <li>
+            ACTUAL gas burned since 03/01/21: <span class="stat">[]</span>gal
         </li>
     </ul>
 </div>

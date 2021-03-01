@@ -10,6 +10,7 @@
   <%= comment.body %>
 </p>
 
+
 <%#link to destroy comment%>
 <p>
     <%#fire off a DELETE /articles/:article_id/comments/:id to our CommentsController, which can use this to find comment we want to delete%>
@@ -18,3 +19,4 @@
                method: :delete,
                data: { confirm: "Are you sure?" } %>
 </p>
+<br>

@@ -1,13 +1,10 @@
 <%# ERB is a templating system that evaluates Ruby code embedded in a document %>
 
-<h1>Hello! Welcome to Shenandoah's journal website.</h1>
+<h1 class="">Hello! Welcome to Shenandoah's journal website.</h1>
+<br><br><br>
+
+<h2 class="font-likeguard medium">Recent activity: <span class="font-mono"> <%= Article.public_count %></span> posts</h2>
 <br>
-
-<h2>Recent activity</h2>
-<br>
-
-
-<p>Our blog has <span class="font-mono"> <%= Article.public_count %></span> articles and counting:</p>
 
 
 <%#list of all the articles%>
@@ -39,7 +36,9 @@
         <%#this is best option. link_to helper renders a link with its first arg as link's txt, second arg as link's destination. 
         If we pass a model obj as second arg, link_to will call the appropriate path helper to convert object to a path.
         Like if we pass article, link_to will call article_path%>
-        <%= link_to article.title, article %>
+        <div class="font-mono article-link">
+          "<%= link_to article.title, article %>"
+        </div>
       <% end %>
       
     </li>
@@ -51,5 +50,9 @@
 <br>
 <br>
 <%#link to create new article page%>
-<%= link_to "New Article", new_article_path %>
+<div class="">
+  <button class="bg-red-300 border-double border-black border-4 p-2 new-art-button">
+    <%= link_to "New Post", new_article_path %>
+  </button>
+</div>
 

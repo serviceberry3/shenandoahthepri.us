@@ -1,11 +1,18 @@
+
+<%= stylesheet_link_tag "articles" %>
+
 <%#display article title and body%>
-<h1 ><%= @article.title %></h1>
+<h1 id="art-title" class="font-extrabold"><%= @article.title %></h1>
+<br><br>
 
-<p><%= @article.body %></p>
+<p class="font-wavemax art-body"><%= @article.body %></p>
+<br><br>
 
+<h2 class="font-likeguard">Actions</h2>
+<br>
 
 <%#link to editing pg for this article%>
-<ul>
+<ul class="font-mono text-4xl ml-4">
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
 
   <%#link to destroy this article, makes DELETE /articles/:id reqst instead of GET%>
@@ -16,8 +23,11 @@
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
 
+<br><br>
+
 <%#display any comments that are linked to this article%>
-<h2>Comments</h2>
+<h2 class="font-likeguard">Comments</h2>
+<br>
 
 <%#render partial in _comment.html.erb once for each comment in @article.comments. render method iterates over @article.comments collection, 
 assigns each comment to local var named the same as the partial, 'comment', which is then available in partial for us to show.%>
@@ -28,6 +38,7 @@ assigns each comment to local var named the same as the partial, 'comment', whic
 <%#adds form that creates new comment by calling CommentsController create action. form_with call here uses array, which will build nested route, 
 such as /articles/1/comments%>
 <h2>Add a comment:</h2>
+<br>
 
 <%#defines partial template we want to render, comments/form. Rails sees slash, realizes want to render _form.html.erb file in app/views/comments dir%>
 <%= render 'comments/form' %>

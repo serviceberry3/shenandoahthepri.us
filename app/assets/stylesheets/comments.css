@@ -1,0 +1,8 @@
+.create-button {
+    padding: 4px;
+}
+
+.create-button:hover {
+    background-color: purple;
+    color: white;
+}
