@@ -1,21 +1,21 @@
 <%#partial for displaying a comment%>
 
-<p>
-  <strong>Commenter:</strong>
-  <%= comment.commenter %>
+<p class="text-4xl">
+  <strong>
+    <%= comment.commenter %>
+  </strong>
 </p>
 
 <p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
+  "<%= comment.body %>"
 </p>
 
 
 <%#link to destroy comment%>
-<p>
+<p class="destroy">
     <%#fire off a DELETE /articles/:article_id/comments/:id to our CommentsController, which can use this to find comment we want to delete%>
     <%#need to pass both the article of this comment, and comment itself to controller, because it uses article to fetch the comment to destroy%>
-  <%= link_to 'Destroy Comment', [comment.article, comment],
+  <%= link_to 'Destroy comment', [comment.article, comment],
                method: :delete,
                data: { confirm: "Are you sure?" } %>
 </p>

@@ -1,19 +1,17 @@
 <%#partial for comment creation form%>
 
-<%= stylesheet_link_tag "comments" %>
-
 <%#adds form that creates new comment by calling CommentsController create action. form_with call here uses array, which will build nested route, 
 such as /articles/1/comments%>
 
 <%#keep in mind the do || syntax is kind of like a function(params), defining args for a code block%>
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
-  <p>
-    <%= form.label :commenter %><br>
+  <p class="form-header">
+    <%= form.label :commenter, "Your name" %><br>
     <%= form.text_field :commenter %>
   </p>
   <br>
-  <p>
-    <%= form.label :body %><br>
+  <p class="form-header">
+    <%= form.label :body, "Comment body" %><br>
     <%= form.text_area :body %>
   </p>
   <p>
