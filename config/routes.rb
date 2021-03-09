@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   #add cities as resource
   resources :cities
 
+  #add journals as resource
+  resources :journals
+
 =begin comment
   get "/articles", to: "articles#index"
 

@@ -21,7 +21,7 @@ class CitiesController < ApplicationController
     @city = City.new
   end
 
-  #this happens when new article form is submitted, and POST /articles rqst. Validations are checked
+  #this happens when new city form is submitted, and POST /articles rqst. Validations are checked
   #'create' action instantiates new article w/values for title and body taken from params Hash, and attempts to save it. If article saved successfully, 
   #redirects browser to the article's page at "[sitename]/articles/#{@article.id}". Else, redisplays form by rendering app/views/articles/new.html.erb.
   def create

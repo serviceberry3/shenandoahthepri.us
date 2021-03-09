@@ -33,15 +33,32 @@ function map_cities() {
   var cities_json = JSON.parse(document.getElementsByName("cities")[0].getAttribute("content"));
 
   for (city in cities_json) {
-      var marker = L.marker([cities_json[city].lat, cities_json[city].long]).addTo(mymap);
-      var icon = marker.options.icon;
-      icon.options.iconSize = [16, 24];
-      icon.options.iconAnchor = [8, 24];
-      marker.setIcon(icon);
+      if (cities_json[city].name != null && cities_json[city].visit_date != null) {
+        var marker = L.marker([cities_json[city].lat, cities_json[city].long]).addTo(mymap);
+        var icon = marker.options.icon;
+        icon.options.iconSize = [16, 24];
+        icon.options.iconAnchor = [8, 24];
+        marker.setIcon(icon);
 
 
-      marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review).openPopup();      
+        marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review + "<br><b>Overall review: </b>" +
+        cities_json[city].rating + "/10").openPopup();     
+      } 
   }
+}
+
+function map_journals() {
+  if (cities_json[city].name != null && cities_json[city].visit_date != null) {
+          var marker = L.marker([cities_json[city].lat, cities_json[city].long]).addTo(mymap);
+          var icon = marker.options.icon;
+          icon.options.iconSize = [16, 24];
+          icon.options.iconAnchor = [8, 24];
+          marker.setIcon(icon);
+
+
+          marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review + "<br><b>Overall review: </b>" +
+          cities_json[city].rating + "/10").openPopup();     
+        } 
 }
 
 async function map_gpx_files() {
@@ -51,7 +68,7 @@ async function map_gpx_files() {
   console.log("running for loop...");
   for (var key in assets.gpx) {
       var gpx = assets.gpx[key]; // URL to your GPX file or the GPX itself
-      console.log("Key is " + key + ", gpx is " + gpx);
+      //console.log("Key is " + key + ", gpx is " + gpx);
       new L.GPX(gpx, {async: true,
           marker_options: {
               startIconUrl: '<%= asset_path('pin-icon-start.png') %>',
@@ -73,6 +90,9 @@ async function map_gpx_files() {
 
   //now let's add the cities
   map_cities();
+
+  //add journals
+  map_journals();
 }
 
 //to be executed last, after all map drawing is complete

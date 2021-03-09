@@ -1,3 +1,17 @@
 // Place all the styles related to the Journals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.form-field {
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.create-button {
+    padding: 4px;
+}
+
+.create-button:hover {
+    background-color: purple;
+    color: white;
+}

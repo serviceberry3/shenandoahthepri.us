@@ -1,0 +1,83 @@
+<%#using the journal model as reference, do a form like this:%>
+<%# Using a model infers both the URL and scope %>
+<%= form_with model: journal do |form| %>
+
+  <div>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, class: "form-field" %>
+
+    <%#display error msg from validators if any have been added to errors attribute of this article%>
+    <%#full_messages_for returns array of usr-friendly error mesgs for specified attribute. empty array of no errors%>
+    <%= journal.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body, class: "form-field" %>
+
+    <%= journal.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :lat %><br>
+    <%= form.text_field :lat, class: "form-field" %>
+
+    <%= journal.errors.full_messages_for(:lat).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :long %><br>
+    <%= form.text_field :long, class: "form-field" %>
+
+    <%= journal.errors.full_messages_for(:long).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :date %><br>
+    <%= form.date_field :date, class: "form-field" %>
+
+    <%= journal.errors.full_messages_for(:date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+<%#from db, we need all the asset paths, list them out with checkboxes next to them%>
+<div>
+    <p>Select the track to which you'd like to attach this journal, or leave blank for none.</p>
+    <div class="form-field">
+        <%= form.collection_select :track_id, Track.order(:filename), :id, :filename, include_blank: true, class: "form-field" %>
+    </div>
+
+    <%= journal.errors.full_messages_for(:track_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+</div>
+
+<%= form.label :floating do %>
+  <%= form.check_box :floating %>
+  Floating on middle of track
+<% end %>
+
+  <br>
+  <div>
+    <%= form.submit class: "create-button" %>
+  </div>
+
+  </div>
+<% end %>

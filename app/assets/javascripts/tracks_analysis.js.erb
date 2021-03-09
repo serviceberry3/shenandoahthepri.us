@@ -8,7 +8,7 @@ function baseName(str)
    return base;
 }
 
-console.log(tracks_json);
+//console.log(tracks_json);
 
 /*
 $.ajax({
@@ -30,11 +30,11 @@ async function fill_ass_paths() {
     for (entry in tracks_json) {
         file_name = tracks_json[entry].filename
 
-        console.log(file_name);
+        //console.log(file_name);
 
         //Returns immediately (asynchronous)
         await getAsset(baseName(file_name)).then(value => {
-            console.log(String(value.path));
+            //console.log(String(value.path));
             assets.gpx[file_name] = value.path;
         });
     }

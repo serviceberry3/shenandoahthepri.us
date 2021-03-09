@@ -1,8 +1,11 @@
-<%#using the article model as reference, do a form like this:%>
-<%= form_with model: city do |form| %>
+<%#using the city model as reference, do a form like this:%>
+<%= form_with model: city do |form| %> <%# I think this 'city' is the one we passed in in new.html.erb, created in ctlr%>
+
+  <div>
+
   <div>
     <%= form.label :name %><br>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-field" %>
 
     <%#display error msg from validators if any have been added to errors attribute of this article%>
     <%#full_messages_for returns array of usr-friendly error mesgs for specified attribute. empty array of no errors%>
@@ -11,33 +14,41 @@
     <% end %>
 
   </div>
+  <br>
 
   <div>
     <%= form.label :visit_date %><br>
-    <%= form.text_field :visit_date %>
+    <%= form.text_field :visit_date, class: "form-field" %>
   </div>
+  <br>
 
   <div>
     <%= form.label :review %><br>
-    <%= form.text_area :review %>
+    <%= form.text_area :review, class: "form-field" %>
   </div>
+  <br>
 
   <div>
     <%= form.label :rating %><br>
-    <%= form.text_field :rating %>
+    <%= form.text_field :rating, class: "form-field" %>
   </div>
+  <br>
 
   <div>
     <%= form.label :lat %><br>
-    <%= form.text_field :lat %>
+    <%= form.text_field :lat, class: "form-field" %>
   </div>
+  <br>
 
   <div>
     <%= form.label :long %><br>
-    <%= form.text_field :long %>
+    <%= form.text_field :long, class: "form-field" %>
   </div>
 
+  <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "create-button" %>
+  </div>
+
   </div>
 <% end %>

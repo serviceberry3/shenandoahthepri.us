@@ -13,6 +13,9 @@ that's fully configured and follows Rails conventions.%>
 appropriate form elements.%>
 
 <%#using the article model as reference, do a form like this:%>
+<%# using form_with model is like doing: %>
+<%# <%= form_with scope: :post, url: post_path(@post), method: :patch do |form| %> 
+
 <%= form_with model: article do |form| %>
   <div>
     <%= form.label :title %><br>

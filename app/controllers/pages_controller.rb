@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   def maps
     @cities = City.all
     @tracks = Track.all
+    @journals = Journal.all
     render template: "pages/maps"
   end
 
