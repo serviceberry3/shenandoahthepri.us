@@ -4,6 +4,18 @@ map_div.style.visibility = 'hidden';
 
 //create leaflet map
 var mymap = L.map('mapid');
+
+//custom journal icon
+var journalIcon = L.icon({
+    iconUrl: '<%= asset_path('journal_icon.png') %>',
+    //shadowUrl: '<%= asset_path('pin-shadow.png') %>',
+
+    iconSize: [25, 25], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [12, 25], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, -28] // point from which the popup should open relative to the iconAnchor
+});
    
 //add MapBox streets tile layer
 L.tileLayer(
@@ -41,24 +53,24 @@ function map_cities() {
         marker.setIcon(icon);
 
 
-        marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review + "<br><b>Overall review: </b>" +
+        marker.bindPopup("<b>" + cities_json[city].name + "<br>Visit date: </b>" + cities_json[city].visit_date + "<br>"
+         + cities_json[city].review + "<br><b>Overall review: </b>" +
         cities_json[city].rating + "/10").openPopup();     
       } 
   }
 }
 
 function map_journals() {
-  if (cities_json[city].name != null && cities_json[city].visit_date != null) {
-          var marker = L.marker([cities_json[city].lat, cities_json[city].long]).addTo(mymap);
-          var icon = marker.options.icon;
-          icon.options.iconSize = [16, 24];
-          icon.options.iconAnchor = [8, 24];
-          marker.setIcon(icon);
+  var journals_json = JSON.parse(document.getElementsByName("journals")[0].getAttribute("content"));
 
+  for (journal in journals_json) {
+      if (journals_json[journal].title != null && journals_json[journal].body != null) {
+        var marker = L.marker([journals_json[journal].lat, journals_json[journal].long], {icon: journalIcon}).addTo(mymap);
 
-          marker.bindPopup("<b>" + cities_json[city].name + "</b><br>" + cities_json[city].review + "<br><b>Overall review: </b>" +
-          cities_json[city].rating + "/10").openPopup();     
-        } 
+        marker.bindPopup("<b>" + journals_json[journal].title + "<br>Date: </b>" + journals_json[journal].date + "<br>" +
+        journals_json[city].body).openPopup();     
+      } 
+  }
 }
 
 async function map_gpx_files() {

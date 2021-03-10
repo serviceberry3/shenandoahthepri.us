@@ -19,7 +19,7 @@
 
   <div>
     <%= form.label :body %><br>
-    <%= form.text_area :body, class: "form-field" %>
+    <%= form.text_area :body, class: ["text-area", "form-field"], rows: 10 %>
 
     <%= journal.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
