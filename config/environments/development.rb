@@ -14,6 +14,8 @@ Rails.application.configure do
   # Whitelist a hostname
   config.hosts << "shenandoahthepri.us"
   config.hosts << "thepri.us"
+  config.hosts << "www.thepri.us"
+  config.hosts << "www.shenandoahthepri.us"
 
   # Show full error reports.
   config.consider_all_requests_local = true
