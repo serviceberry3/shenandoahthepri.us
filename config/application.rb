@@ -14,6 +14,8 @@ module DoahApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.fallbacks = [I18n.default_locale]
+
     #timezone setup
     config.time_zone = 'Eastern Time (US & Canada)' # Your local time zone
     config.active_record.default_timezone = :local

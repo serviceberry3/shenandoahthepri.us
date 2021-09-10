@@ -42,3 +42,6 @@ yarn-debug.log*
 # Ignore all gpx and images
 app/assets/gpx
 app/assets/images
+
+# Ignore db config file
+config/database.yml
