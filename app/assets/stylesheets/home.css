@@ -89,6 +89,15 @@ main {
     color: black;
 }
 
+.Header a:hover {
+    color: white;
+}
+
+.Header a:active {
+    color: black;
+}
+
+
 .Nav { 
     grid-area: Nav; 
 }
