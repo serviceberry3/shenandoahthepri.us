@@ -10,7 +10,7 @@ gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 gem 'mysql2', '~> 0.5.3'
-
+gem 'bcrypt', '~> 3.1.7'
 gem 'mimemagic', '~> 0.3.10'
 
 gem 'therubyracer', platforms: :ruby
